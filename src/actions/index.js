@@ -105,9 +105,10 @@ export function getCommits(repos){
 
             /**************** 
             *   only master branches  
+            * access_token=9fe77e74cb27381e92cdd445c45deb747218f3a6&
             *****************/
             axios
-            .get("https://api.github.com/repos/"+repo.owner.login+"/"+repo.name+"/commits?access_token=9fe77e74cb27381e92cdd445c45deb747218f3a6&sort=updated_at&page=0&per_page=1000")
+            .get("https://api.github.com/repos/"+repo.owner.login+"/"+repo.name+"/commits?sort=updated_at&page=0&per_page=1000")
             .then(res => {
                 count = count + 1  
                 if (res.status === 200) {
@@ -135,14 +136,14 @@ export function getCommits(repos){
             *   all branches   
             *****************/
             // axios
-            // .get("https://api.github.com/repos/"+repo.owner.login+"/"+repo.name+"/branches?access_token=9fe77e74cb27381e92cdd445c45deb747218f3a6&")
+            // .get("https://api.github.com/repos/"+repo.owner.login+"/"+repo.name+"/branches?")
             // .then(res => {
             //     var branches = res.data;
             //     console.log(branches)
             //     // dispatch(getCommitsSuccess(commits));
             //     branches.forEach((branche, index, arr)=>{
             //         axios
-            //         .get("https://api.github.com/repos/"+repo.owner.login+"/"+repo.name+"/commits?access_token=9fe77e74cb27381e92cdd445c45deb747218f3a6&sha="+branche.name+"&sort=updated_at&per_page=1000")
+            //         .get("https://api.github.com/repos/"+repo.owner.login+"/"+repo.name+"/commits?sha="+branche.name+"&sort=updated_at&per_page=1000")
             //         .then(res => {
             //             count = count + 1
                           
@@ -183,7 +184,7 @@ export function getProjects(users) {
         dispatch(getProjectsRequest());
         users.forEach((user, index, arr) => {
             axios
-            .get("https://api.github.com/users/"+user+"/repos?access_token=9fe77e74cb27381e92cdd445c45deb747218f3a6&sort=updated_at&per_page=100")
+            .get("https://api.github.com/users/"+user+"/repos?sort=updated_at&per_page=100")
             .then(res => {
                 count = count + 1
                 if (res.status === 200) {
